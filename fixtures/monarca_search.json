@@ -1,0 +1,661 @@
+{
+ "products": {
+  "content": [
+   {
+    "id": 901563,
+    "description": "LECHE DESLACTOSADA BOTELLA",
+    "shortDescription": null,
+    "presentation": "1lt",
+    "brand": "LA SERENISIMA",
+    "baseUnit": {
+     "id": 4,
+     "parentId": null,
+     "description": "Unidades",
+     "shortName": "uds",
+     "increment": 1.0,
+     "convertion": 1.0,
+     "minByProd": 1.0
+    },
+    "featuredImage": {
+     "id": 54461,
+     "path": "https://d2n39a10pcqohq.cloudfront.net/unsafe/prod/7790742333605.33.png",
+     "resizePath": "https://d2n39a10pcqohq.cloudfront.net/unsafe/${params}/prod/7790742333605.33.png",
+     "basePath": "prod/7790742333605.33.png"
+    },
+    "imageShelf": {
+     "id": null,
+     "path": "",
+     "resizePath": "",
+     "basePath": ""
+    },
+    "category": {
+     "id": 15324,
+     "description": "LV DESLACTOSADA",
+     "parentId": 10122,
+     "featured": false,
+     "image": null,
+     "flagEnabled": true,
+     "area": 0
+    },
+    "isFractionable": 0,
+    "fractions": [
+     {
+      "id": 4,
+      "parentId": null,
+      "description": "Unidades",
+      "shortName": "uds",
+      "increment": 1.0,
+      "convertion": 1.0,
+      "minByProd": 1.0
+     }
+    ],
+    "minimumByUnit": null,
+    "size": 100,
+    "stock": null,
+    "status": "Publicado",
+    "barcode": "7790742333605",
+    "price": 3399.0,
+    "strPrice": "3399.00",
+    "priceByUnity": 3399.0,
+    "referenceUnit": "1 lts",
+    "internal_tax": 0,
+    "value_added_tax": 21,
+    "price_without_taxes": 2809.09,
+    "promotions": [],
+    "priority": 1000,
+    "origin": "41",
+    "html": null,
+    "gallery": [],
+    "tags": [
+     {
+      "id": 537,
+      "description": "leche"
+     }
+    ],
+    "attrs": [
+     {
+      "id": 647720,
+      "name": "Sin Azucar",
+      "value": ""
+     },
+     {
+      "id": 647719,
+      "name": "Sin Sal",
+      "value": ""
+     },
+     {
+      "id": 647718,
+      "name": "Sin Gluten",
+      "value": ""
+     }
+    ],
+    "showDisplayPricePerUnit": false,
+    "displayPrice": null,
+    "displayPresentation": null,
+    "displayPriceWithoutTaxes": null
+   },
+   {
+    "id": 658892,
+    "description": "LECHE EN POLVO DESCREMADA",
+    "shortDescription": "SOBRES",
+    "presentation": "150grs",
+    "brand": "ILOLAY",
+    "baseUnit": {
+     "id": 4,
+     "parentId": null,
+     "description": "Unidades",
+     "shortName": "uds",
+     "increment": 1.0,
+     "convertion": 1.0,
+     "minByProd": 1.0
+    },
+    "featuredImage": {
+     "id": 21458,
+     "path": "https://d2n39a10pcqohq.cloudfront.net/unsafe/prod/7790787201297.png",
+     "resizePath": "https://d2n39a10pcqohq.cloudfront.net/unsafe/${params}/prod/7790787201297.png",
+     "basePath": "prod/7790787201297.png"
+    },
+    "imageShelf": {
+     "id": null,
+     "path": "",
+     "resizePath": "",
+     "basePath": ""
+    },
+    "category": {
+     "id": 15081,
+     "description": "DESCREMADA",
+     "parentId": 10121,
+     "featured": false,
+     "image": null,
+     "flagEnabled": true,
+     "area": 8500
+    },
+    "isFractionable": 0,
+    "fractions": [
+     {
+      "id": 4,
+      "parentId": null,
+      "description": "Unidades",
+      "shortName": "uds",
+      "increment": 1.0,
+      "convertion": 1.0,
+      "minByProd": 1.0
+     }
+    ],
+    "minimumByUnit": null,
+    "size": 100,
+    "stock": null,
+    "status": "Publicado",
+    "barcode": "7790787201297",
+    "price": 7399.0,
+    "strPrice": "7399.00",
+    "priceByUnity": 49326.67,
+    "referenceUnit": "1 kg",
+    "internal_tax": 0,
+    "value_added_tax": 21,
+    "price_without_taxes": 6114.88,
+    "promotions": [],
+    "priority": 1010,
+    "origin": "41",
+    "html": null,
+    "gallery": [],
+    "tags": [
+     {
+      "id": 145,
+      "description": "en polvo"
+     },
+     {
+      "id": 143,
+      "description": "leche"
+     }
+    ],
+    "attrs": [
+     {
+      "id": 645098,
+      "name": "Sin Azucar",
+      "value": ""
+     },
+     {
+      "id": 645097,
+      "name": "Sin Sal",
+      "value": ""
+     }
+    ],
+    "showDisplayPricePerUnit": false,
+    "displayPrice": null,
+    "displayPresentation": null,
+    "displayPriceWithoutTaxes": null
+   }
+  ],
+  "pageable": {
+   "sort": {
+    "sorted": false,
+    "unsorted": true
+   },
+   "offset": 0,
+   "pageSize": 2,
+   "pageNumber": 0,
+   "paged": true,
+   "unpaged": false
+  },
+  "totalPages": 108,
+  "totalElements": 216,
+  "last": false,
+  "first": true,
+  "sort": {
+   "sorted": false,
+   "unsorted": true
+  },
+  "size": 2,
+  "number": 0,
+  "numberOfElements": 2
+ },
+ "brandDetails": [
+  {
+   "name": "LA SERENISIMA",
+   "count": 50
+  },
+  {
+   "name": "ILOLAY",
+   "count": 22
+  },
+  {
+   "name": "NUTRILON",
+   "count": 13
+  },
+  {
+   "name": "MILKA",
+   "count": 11
+  },
+  {
+   "name": "VITAL",
+   "count": 11
+  },
+  {
+   "name": "TREGAR",
+   "count": 10
+  },
+  {
+   "name": "ARMONIA",
+   "count": 7
+  },
+  {
+   "name": "COFLER",
+   "count": 6
+  },
+  {
+   "name": "SANCOR",
+   "count": 6
+  },
+  {
+   "name": "VAUQUITA",
+   "count": 6
+  },
+  {
+   "name": "DANETTE",
+   "count": 4
+  },
+  {
+   "name": "MONARCA",
+   "count": 4
+  },
+  {
+   "name": "BABY",
+   "count": 3
+  },
+  {
+   "name": "CINDOR",
+   "count": 3
+  },
+  {
+   "name": "EXQUISITA",
+   "count": 3
+  },
+  {
+   "name": "GAONA",
+   "count": 3
+  },
+  {
+   "name": "NESTLE",
+   "count": 3
+  },
+  {
+   "name": "SAN IGNACIO",
+   "count": 3
+  },
+  {
+   "name": "BLOCK",
+   "count": 2
+  },
+  {
+   "name": "CHOCOARROZ",
+   "count": 2
+  },
+  {
+   "name": "DON SATUR",
+   "count": 2
+  },
+  {
+   "name": "GODET",
+   "count": 2
+  },
+  {
+   "name": "KONGO",
+   "count": 2
+  },
+  {
+   "name": "LA VIRGINIA",
+   "count": 2
+  },
+  {
+   "name": "PET´S CLASS",
+   "count": 2
+  },
+  {
+   "name": "SINFONIA",
+   "count": 2
+  },
+  {
+   "name": "SVELTY",
+   "count": 2
+  },
+  {
+   "name": "TOFI",
+   "count": 2
+  },
+  {
+   "name": "VALENTE",
+   "count": 2
+  },
+  {
+   "name": "WHISKAS",
+   "count": 2
+  },
+  {
+   "name": "AGUILA",
+   "count": 1
+  },
+  {
+   "name": "ARCOR",
+   "count": 1
+  },
+  {
+   "name": "BONAFIDE",
+   "count": 1
+  },
+  {
+   "name": "CUSENIER",
+   "count": 1
+  },
+  {
+   "name": "DOVE",
+   "count": 1
+  },
+  {
+   "name": "DULCOR",
+   "count": 1
+  },
+  {
+   "name": "EL POCILLO",
+   "count": 1
+  },
+  {
+   "name": "ESCUELA GRANJA",
+   "count": 1
+  },
+  {
+   "name": "KIT KAT",
+   "count": 1
+  },
+  {
+   "name": "LA LECHERA",
+   "count": 1
+  },
+  {
+   "name": "LA PAULINA",
+   "count": 1
+  },
+  {
+   "name": "LHERITIER",
+   "count": 1
+  },
+  {
+   "name": "MANA",
+   "count": 1
+  },
+  {
+   "name": "MENTITAS",
+   "count": 1
+  },
+  {
+   "name": "NATURITOS",
+   "count": 1
+  },
+  {
+   "name": "NESQUIK",
+   "count": 1
+  },
+  {
+   "name": "NUGATON",
+   "count": 1
+  },
+  {
+   "name": "PRODULAC",
+   "count": 1
+  },
+  {
+   "name": "ROYAL",
+   "count": 1
+  },
+  {
+   "name": "SER",
+   "count": 1
+  }
+ ],
+ "categoryDetails": [
+  {
+   "name": "FORMULAS INFANTILES",
+   "count": 33
+  },
+  {
+   "name": "CHOCOLATES",
+   "count": 27
+  },
+  {
+   "name": "DULCE DE LECHE COMUN",
+   "count": 16
+  },
+  {
+   "name": "CREMA DE LECHE",
+   "count": 14
+  },
+  {
+   "name": "LECHE CHOCOLATADA",
+   "count": 12
+  },
+  {
+   "name": "POSTRES Y FLANES",
+   "count": 9
+  },
+  {
+   "name": "LV DESCREMADA",
+   "count": 8
+  },
+  {
+   "name": "OTRAS LECHES",
+   "count": 8
+  },
+  {
+   "name": "ENTERA",
+   "count": 7
+  },
+  {
+   "name": "DESCREMADA",
+   "count": 6
+  },
+  {
+   "name": "MAGDALENAS Y VAINILLAS",
+   "count": 6
+  },
+  {
+   "name": "OTRAS GOLOSINAS",
+   "count": 6
+  },
+  {
+   "name": "ALIMENTO PARA GATOS",
+   "count": 5
+  },
+  {
+   "name": "LECHE DESLACTOSADA",
+   "count": 5
+  },
+  {
+   "name": "LV ENTERA",
+   "count": 5
+  },
+  {
+   "name": "DESCREMADAS",
+   "count": 4
+  },
+  {
+   "name": "DULCE DE LECHE REPOSTERO",
+   "count": 3
+  },
+  {
+   "name": "LICOR",
+   "count": 3
+  },
+  {
+   "name": "POSTRE COMUN",
+   "count": 3
+  },
+  {
+   "name": "POSTRES DE NIÑOS",
+   "count": 3
+  },
+  {
+   "name": "FACTURAS",
+   "count": 2
+  },
+  {
+   "name": "FLAN COMUN",
+   "count": 2
+  },
+  {
+   "name": "GALLETITAS SECAS",
+   "count": 2
+  },
+  {
+   "name": "LV DESLACTOSADA",
+   "count": 2
+  },
+  {
+   "name": "OBLEAS",
+   "count": 2
+  },
+  {
+   "name": "OTRAS LECHES FRESCAS",
+   "count": 2
+  },
+  {
+   "name": "SNACKS SALUDABLES",
+   "count": 2
+  },
+  {
+   "name": "ALFAJORES",
+   "count": 1
+  },
+  {
+   "name": "ALIMENTO PARA PERROS",
+   "count": 1
+  },
+  {
+   "name": "BEBIBLES",
+   "count": 1
+  },
+  {
+   "name": "BUDINES",
+   "count": 1
+  },
+  {
+   "name": "CAFE CAPSULAS",
+   "count": 1
+  },
+  {
+   "name": "CAPUCCINOS Y OTROS",
+   "count": 1
+  },
+  {
+   "name": "CEREALES SABORIZADOS",
+   "count": 1
+  },
+  {
+   "name": "CHOCOLATES REPOSTERIA",
+   "count": 1
+  },
+  {
+   "name": "ENTERAS",
+   "count": 1
+  },
+  {
+   "name": "FIRMES",
+   "count": 1
+  },
+  {
+   "name": "JABON DE TOCADOR",
+   "count": 1
+  },
+  {
+   "name": "LECHE EN POLVO",
+   "count": 1
+  },
+  {
+   "name": "MALTA",
+   "count": 1
+  },
+  {
+   "name": "OTROS DULCE DE LECHE",
+   "count": 1
+  },
+  {
+   "name": "OTROS DULCES",
+   "count": 1
+  },
+  {
+   "name": "PASTILLAS",
+   "count": 1
+  },
+  {
+   "name": "POSTRE DIET/LIGHT",
+   "count": 1
+  },
+  {
+   "name": "PRODUCTOS DULCES SECOS",
+   "count": 1
+  },
+  {
+   "name": "SALSAS",
+   "count": 1
+  }
+ ],
+ "attrsDetails": [
+  {
+   "name": "Sin Sal",
+   "count": 192
+  },
+  {
+   "name": "Sin Azucar",
+   "count": 191
+  },
+  {
+   "name": "Sin Gluten",
+   "count": 107
+  },
+  {
+   "name": "Con Azucar",
+   "count": 1
+  }
+ ],
+ "tagsDetails": [
+  {
+   "name": "leche",
+   "count": 20
+  },
+  {
+   "name": "coronados",
+   "count": 7
+  },
+  {
+   "name": "dulce de leche",
+   "count": 6
+  },
+  {
+   "name": "en polvo",
+   "count": 6
+  },
+  {
+   "name": "infantil",
+   "count": 4
+  },
+  {
+   "name": "larga vida",
+   "count": 4
+  },
+  {
+   "name": "jabon",
+   "count": 1
+  },
+  {
+   "name": "liquido",
+   "count": 1
+  },
+  {
+   "name": "manos",
+   "count": 1
+  },
+  {
+   "name": "repuesto",
+   "count": 1
+  }
+ ]
+}
