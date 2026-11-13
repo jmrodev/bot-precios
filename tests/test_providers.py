@@ -52,6 +52,22 @@ def test_golopolis_parsea_html_con_precio_us():
     assert ofertas[1].link.endswith("itemId=10121")
 
 
+def test_vtex_descarta_productos_sin_stock():
+    # VTEX devuelve precio residual en SKUs agotados (ej. $34,57 por una yerba de 1 kg)
+    payload = [{
+        "productName": "Yerba Agotada 1 Kg",
+        "brand": "Marca",
+        "link": "https://www.vea.com.ar/yerba-agotada/p",
+        "items": [{
+            "ean": "7790000000001",
+            "sellers": [{"commertialOffer": {
+                "Price": 34.57, "ListPrice": 2857.0, "AvailableQuantity": 0,
+            }}],
+        }],
+    }]
+    assert VtexProvider("Vea", "www.vea.com.ar").parse(payload) == []
+
+
 def test_parse_respeta_el_limite():
     payload = json.loads((FIXTURES / "vtex_search.json").read_text(encoding="utf-8"))
     assert len(VtexProvider("Vea", "www.vea.com.ar").parse(payload, limit=1)) == 1

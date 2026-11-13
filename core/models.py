@@ -5,14 +5,17 @@ from typing import Tuple
 
 @dataclass(frozen=True)
 class Offer:
-    """Una oferta concreta de un mercado para un producto."""
+    """Una oferta comprable de un mercado para un producto.
+
+    Los providers no devuelven productos sin stock: un precio que no se puede
+    pagar no es una oferta.
+    """
     market: str
     product: str
     brand: str = ""
     ean: str = ""
     price: float = 0.0
     list_price: float = 0.0
-    available: bool = True
     link: str = ""
 
 

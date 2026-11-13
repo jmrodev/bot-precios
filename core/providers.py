@@ -42,6 +42,9 @@ class VtexProvider:
             price = float(oferta.get("Price") or 0)
             if price <= 0:
                 continue
+            if int(oferta.get("AvailableQuantity") or 0) <= 0:
+                # sin stock: VTEX devuelve un precio residual sin sentido (ej. $34,57)
+                continue
             ofertas.append(Offer(
                 market=self.market,
                 product=(item.get("productName") or "").strip(),
@@ -49,7 +52,6 @@ class VtexProvider:
                 ean=str(sku.get("ean") or ""),
                 price=price,
                 list_price=float(oferta.get("ListPrice") or 0),
-                available=int(oferta.get("AvailableQuantity") or 0) > 0,
                 link=item.get("link") or "",
             ))
             if len(ofertas) >= limit:
@@ -76,6 +78,8 @@ class MonarcaProvider:
         ofertas = []
         productos = ((payload or {}).get("products") or {}).get("content") or []
         for item in productos:
+            if item.get("status") != "Publicado":
+                continue
             price = float(item.get("price") or 0)
             if price <= 0:
                 continue
@@ -90,7 +94,6 @@ class MonarcaProvider:
                 ean=str(item.get("barcode") or ""),
                 price=price,
                 list_price=price,
-                available=item.get("status") == "Publicado",
                 link="",
             ))
         return ofertas[:limit]
@@ -134,7 +137,6 @@ class GolopolisProvider:
                 ean=ean.group(1) if ean else "",
                 price=price,
                 list_price=price,
-                available=True,
                 link=f"https://www.golopolis.com.ar/app/?action=detail&itemId={item.group(1)}",
             ))
         return ofertas
