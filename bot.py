@@ -1,7 +1,6 @@
 import os
 import html
 import logging
-import unicodedata
 import uuid
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import (
@@ -12,15 +11,15 @@ from telegram.ext import (
     filters,
     ContextTypes,
 )
-from scraper import RetailScraper, MARKETS
+from core import MARKETS, filter_relevant, group_products, money, search_all
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     level=logging.INFO
 )
+# httpx loguea la URL completa de la Bot API, token incluido: no lo queremos en el journal
+logging.getLogger("httpx").setLevel(logging.WARNING)
 logger = logging.getLogger(__name__)
-
-scraper = RetailScraper()
 
 LIMIT_PER_STORE = 6
 MAX_BLOCKS = 8
@@ -29,37 +28,6 @@ CACHE = {}
 
 
 # ---------- utilidades de texto ----------
-
-def _norm(text: str) -> str:
-    """Minúsculas y sin acentos, para comparar nombres de productos."""
-    t = unicodedata.normalize("NFKD", text or "")
-    t = "".join(c for c in t if not unicodedata.combining(c))
-    return t.lower()
-
-
-def _tokens(query: str):
-    toks = [t for t in _norm(query).split() if len(t) >= 3]
-    return toks or _norm(query).split()
-
-
-def _score(name: str, tokens) -> int:
-    n = _norm(name)
-    return sum(1 for t in tokens if t in n)
-
-
-def _filter_relevant(results, query):
-    """Descarta resultados que no contienen las palabras buscadas."""
-    tokens = _tokens(query)
-    strict = [r for r in results if _score(r["producto"], tokens) == len(tokens)]
-    if strict:
-        return strict
-    relaxed = [r for r in results if _score(r["producto"], tokens) >= 1]
-    return relaxed or results
-
-
-def _money(value: float) -> str:
-    return "$" + f"{value:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
-
 
 def _esc(text: str) -> str:
     return html.escape(text or "")
@@ -72,29 +40,6 @@ def _link(label: str, url: str) -> str:
     return name
 
 
-# ---------- agrupado por producto ----------
-
-def _group_products(results):
-    """Agrupa ofertas del mismo producto (por EAN, o por nombre si no hay EAN)."""
-    groups = {}
-    for r in results:
-        ean = (r.get("ean") or "").strip()
-        key = f"ean:{ean}" if len(ean) >= 8 else f"name:{_norm(r['producto'])[:40]}"
-        g = groups.setdefault(key, {"title": r["producto"], "offers": {}})
-        if len(r["producto"]) > len(g["title"]):
-            g["title"] = r["producto"]
-        prev = g["offers"].get(r["supermercado"])
-        if prev is None or r["precio"] < prev["precio"]:
-            g["offers"][r["supermercado"]] = r
-
-    out = []
-    for g in groups.values():
-        offers = sorted(g["offers"].values(), key=lambda x: x["precio"])
-        out.append({"title": g["title"], "offers": offers})
-    out.sort(key=lambda g: (-len(g["offers"]), g["offers"][0]["precio"]))
-    return out
-
-
 # ---------- render ----------
 
 def _render_comparison(groups, query) -> str:
@@ -103,10 +48,10 @@ def _render_comparison(groups, query) -> str:
 
     for g in groups[:MAX_BLOCKS]:
         lines.append("")
-        lines.append(f"<b>{_esc(g['title'])}</b>")
-        for i, o in enumerate(g["offers"]):
+        lines.append(f"<b>{_esc(g.title)}</b>")
+        for i, o in enumerate(g.offers):
             mark = "🏆" if i == 0 else "▫️"
-            lines.append(f"{mark} <b>{_money(o['precio'])}</b> · {_link(o['supermercado'], o.get('link', ''))}")
+            lines.append(f"{mark} <b>{money(o.price)}</b> · {_link(o.market, o.link)}")
 
     if len(groups) > MAX_BLOCKS:
         lines.append("")
@@ -117,20 +62,20 @@ def _render_comparison(groups, query) -> str:
     return "\n".join(lines)
 
 
-def _render_by_market(results, query) -> str:
+def _render_by_market(offers, query) -> str:
     por_mercado = {}
-    for r in results:
-        por_mercado.setdefault(r["supermercado"], []).append(r)
+    for o in offers:
+        por_mercado.setdefault(o.market, []).append(o)
 
     lines = [f"🏪 <b>{_esc(query)}</b> por mercado"]
     for market in MARKETS:
-        items = sorted(por_mercado.get(market, []), key=lambda x: x["precio"])
+        items = sorted(por_mercado.get(market, []), key=lambda x: x.price)
         if not items:
             continue
         lines.append("")
         lines.append(f"<b>{_esc(market)}</b>")
-        for r in items[:5]:
-            lines.append(f"▫️ <b>{_money(r['precio'])}</b> · {_link(r['producto'][:70], r.get('link', ''))}")
+        for o in items[:5]:
+            lines.append(f"▫️ <b>{money(o.price)}</b> · {_link(o.product[:70], o.link)}")
     return "\n".join(lines)
 
 
@@ -138,12 +83,12 @@ def _render_top(groups, query, n=5) -> str:
     lines = [f"💰 <b>{_esc(query)}</b> — los {n} más baratos"]
     flat = []
     for g in groups:
-        for o in g["offers"]:
-            flat.append((o, g["title"]))
-    flat.sort(key=lambda x: x[0]["precio"])
+        for o in g.offers:
+            flat.append((o, g.title))
+    flat.sort(key=lambda x: x[0].price)
     for o, title in flat[:n]:
         lines.append("")
-        lines.append(f"<b>{_money(o['precio'])}</b> · {_link(o['supermercado'], o.get('link', ''))}")
+        lines.append(f"<b>{money(o.price)}</b> · {_link(o.market, o.link)}")
         lines.append(f"   {_esc(title)[:80]}")
     return "\n".join(lines)
 
@@ -193,8 +138,8 @@ async def buscar_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
     try:
-        results = await scraper.search_all(query, limit_per_store=LIMIT_PER_STORE)
-        results = _filter_relevant(results, query)
+        results = await search_all(query, limit=LIMIT_PER_STORE)
+        results = filter_relevant(results, query)
 
         if not results:
             await status_msg.edit_text(
@@ -203,7 +148,7 @@ async def buscar_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return
 
-        groups = _group_products(results)
+        groups = group_products(results)
 
         key = uuid.uuid4().hex[:10]
         CACHE[key] = {"query": query, "results": results, "groups": groups}
