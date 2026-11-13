@@ -1,0 +1,10 @@
+# Entorno y secretos
+.venv/
+__pycache__/
+*.pyc
+token.txt
+.env
+*.log
+
+# Estado local de herramientas
+.chelo/

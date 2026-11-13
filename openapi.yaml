@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  title: API bot-precios
+  version: 1.0.0
+  description: Contrato sagrado Spec-First de bot-precios.
+paths:
+  /health:
+    get:
+      summary: Health check del servicio
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: healthy
